@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const BoardHeader = (props) => {
     // TODO - implement count up
@@ -8,7 +9,8 @@ const BoardHeader = (props) => {
             <h1>Minesweeper</h1>
             {props.gameOver && <h2>Game Over</h2>}
             {props.gameWon && <h2>You Won!</h2>}
-            <button onClick={props.resetGame}>Reset Game</button>
+            <button id="reset" onClick={props.resetGame}>Reset Game</button>
+            {/* {`${moment()}`} */}
         </div>
     );
 };
