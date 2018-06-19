@@ -1,20 +1,38 @@
 import React  from 'react';
 import BoardHeader from './BoardHeader';
 import Board from './Board';
-import '../styles/App.css';
+import '../styles/minesweeper.css';
 
 
+// TODO - move button out of header
+// TODO - fix win/lose announcement 
+// TODO - deploy! 
+// TODO - add tests!
+
+
+// TODO - abstract to complete site (add react-router, etc)
 // TODO - reveal adjacents
+// TODO - add animation when revealing squares
+// TODO - get a flag icon
+// TODO - get a bomb icon
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
+    let bombSet = new Set();
+
+    while (bombSet.size < 10) {
+      bombSet.add(Math.floor(Math.random() * Math.floor(64)))
+    }
+
+    console.log(bombSet);
+
     this.state = {
       squares: [...Array(64).keys()].map((square) => {
         return {
           id: square,
-          type: square % 7 === 0 ? "bomb" : "blank",
+          type: bombSet.has(square) ? "bomb" : "blank",
           row: Math.floor(square / 8),
           col: square % 8,
           revealed: false,
@@ -27,6 +45,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
+
     this.setState((prevState) => {
       return {
         squares: prevState.squares.map((square) => {
@@ -153,7 +173,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="wrapper">
         <BoardHeader 
           gameOver={this.state.gameOver}
           gameWon={this.state.gameWon}
@@ -164,6 +184,7 @@ class App extends React.Component {
           handleClick={(i) => this.handleClick(i)}
           handleContextMenu={(i) => this.handleContextMenu(i)}
         />
+        <div className="footer">content</div>
       </div>
     );
   }

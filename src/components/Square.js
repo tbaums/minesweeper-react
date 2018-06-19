@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Square.css';
+
 
 class Square extends React.Component {
     constructor(props) {
@@ -19,7 +19,10 @@ class Square extends React.Component {
     render() {
         return (
             <button 
-                className="square"
+                className={`square 
+                            ${this.props.revealed ? "revealed" : ""}
+                            ${this.props.value === "F" ? "flagged" : ""}
+                        `}
                 onContextMenu={this.handleContextMenu}
                 onClick={() => {
                     this.handleClick()
