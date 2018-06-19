@@ -26,8 +26,6 @@ class App extends React.Component {
       bombSet.add(Math.floor(Math.random() * Math.floor(64)))
     }
 
-    console.log(bombSet);
-
     this.state = {
       squares: [...Array(64).keys()].map((square) => {
         return {
