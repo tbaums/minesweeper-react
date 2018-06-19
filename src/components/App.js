@@ -1,11 +1,10 @@
 import React  from 'react';
 import BoardHeader from './BoardHeader';
 import Board from './Board';
+import Sidebar from './Sidebar';
 import '../styles/minesweeper.css';
 
 
-// TODO - move button out of header
-// TODO - fix win/lose announcement 
 // TODO - deploy! 
 // TODO - add tests!
 
@@ -22,7 +21,7 @@ class App extends React.Component {
 
     let bombSet = new Set();
 
-    while (bombSet.size < 10) {
+    while (bombSet.size < 7) {
       bombSet.add(Math.floor(Math.random() * Math.floor(64)))
     }
 
@@ -43,8 +42,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
-
     this.setState((prevState) => {
       return {
         squares: prevState.squares.map((square) => {
@@ -172,17 +169,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <BoardHeader 
-          gameOver={this.state.gameOver}
-          gameWon={this.state.gameWon}
-          resetGame={() => this.resetGame()}
-        />
+        <BoardHeader />
         <Board 
           squares={this.state.squares}
           handleClick={(i) => this.handleClick(i)}
           handleContextMenu={(i) => this.handleContextMenu(i)}
         />
-        <div className="footer">content</div>
+        <Sidebar 
+          resetGame={() => this.resetGame()}
+          gameOver={this.state.gameOver}
+          gameWon={this.state.gameWon}
+        />
+        <div className="footer" />
       </div>
     );
   }
