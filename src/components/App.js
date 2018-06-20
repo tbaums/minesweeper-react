@@ -20,7 +20,6 @@ class App extends React.Component {
     super(props);
 
     let bombSet = new Set();
-
     while (bombSet.size < 7) {
       bombSet.add(Math.floor(Math.random() * Math.floor(64)))
     }
@@ -180,7 +179,9 @@ class App extends React.Component {
           gameOver={this.state.gameOver}
           gameWon={this.state.gameWon}
         />
-        <div className="footer" />
+        <div className="footer">
+          <h3>Made by <a href="http://tbaums.io" target="_blank">@Tbaums.</a></h3>
+        </div>
       </div>
     );
   }
